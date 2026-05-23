@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Blue Garden | Outdoor Events Reimagined",
+  title: "Blue Garden | Eventos al aire libre",
   description:
-    "Premium ecological experiences for unforgettable outdoor events.",
+    "Experiencias ecológicas premium para eventos inolvidables al aire libre.",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="es" className="h-full antialiased">
       <body className="min-h-full font-sans">{children}</body>
     </html>
   );

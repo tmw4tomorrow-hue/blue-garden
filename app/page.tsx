@@ -26,16 +26,16 @@ export default function Home() {
         <main className="flex flex-1 flex-col items-center justify-center px-6 pb-20 text-center">
           <div className="mx-auto max-w-4xl space-y-8">
             <h1 className="font-serif text-5xl leading-tight font-light text-white sm:text-6xl md:text-7xl">
-              Outdoor Events Reimagined
+              Eventos al aire libre, reimaginados
             </h1>
             <p className="mx-auto max-w-xl text-base text-white/75 sm:text-lg">
-              Premium ecological experiences for unforgettable events.
+              Experiencias ecológicas premium para eventos inolvidables.
             </p>
             <Link
               href="/book"
               className="inline-block rounded-full border border-white/20 bg-white/10 px-10 py-4 text-sm tracking-[0.2em] text-white uppercase backdrop-blur-sm transition hover:bg-white hover:text-zinc-900"
             >
-              Book Your Event
+              Reserva tu evento
             </Link>
           </div>
         </main>
