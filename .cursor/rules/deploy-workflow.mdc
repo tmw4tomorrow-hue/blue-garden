@@ -1,0 +1,13 @@
+---
+description: Tras cambios en el proyecto, publicar en GitHub y Vercel
+alwaysApply: true
+---
+
+# Publicar cambios (GitHub + Vercel)
+
+Después de **cualquier cambio** en el código de Blue Garden:
+
+1. **GitHub**: hacer commit y `git push origin main` con mensaje claro en español o inglés.
+2. **Vercel**: si el repo está conectado en vercel.com, el push dispara el deploy automático. Si hay CLI vinculado, ejecutar `npx vercel --prod --yes`.
+
+No dejar cambios solo en local. Informar al usuario la URL pública si está disponible.
