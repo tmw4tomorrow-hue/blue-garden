@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1280&q=75&auto=format&fit=crop";
 
@@ -29,12 +31,12 @@ export default function Home() {
             <p className="mx-auto max-w-xl text-base text-white/75 sm:text-lg">
               Premium ecological experiences for unforgettable events.
             </p>
-            <a
-              href="#book"
+            <Link
+              href="/book"
               className="inline-block rounded-full border border-white/20 bg-white/10 px-10 py-4 text-sm tracking-[0.2em] text-white uppercase backdrop-blur-sm transition hover:bg-white hover:text-zinc-900"
             >
               Book Your Event
-            </a>
+            </Link>
           </div>
         </main>
       </div>
