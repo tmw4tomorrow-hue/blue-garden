@@ -107,10 +107,7 @@ export default function BookingForm() {
         />
       </label>
 
-      <button
-        type="submit"
-        className="w-full rounded-full border border-white/20 bg-white/10 py-4 text-sm tracking-[0.2em] text-white uppercase transition hover:bg-white hover:text-zinc-900"
-      >
+      <button type="submit" className="glass-btn w-full">
         Enviar solicitud
       </button>
     </form>

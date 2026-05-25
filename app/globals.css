@@ -1,9 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap");
 @import "tailwindcss";
 
 :root {
   --background: #09090b;
   --foreground: #fafafa;
+  --cream: #f7f4ef;
+  --sage: #4a5d4a;
+  --gold: #c4a574;
 }
 
 @theme inline {
@@ -16,4 +19,174 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Apple-style glass buttons */
+.glass-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.875rem 1.75rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: inherit;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    color 0.35s ease;
+}
+
+.glass-btn:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.92);
+  color: #18181b;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.12);
+  transform: scale(1.02);
+}
+
+.glass-btn:active {
+  transform: scale(0.98);
+}
+
+.glass-btn--sm {
+  padding: 0.5rem 1.125rem;
+  font-size: 0.625rem;
+}
+
+.glass-btn--ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.glass-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fafafa;
+  box-shadow: none;
+  transform: scale(1.01);
+}
+
+/* Dreamcore atmosphere */
+.dream-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(42, 61, 50, 0.45) 0%,
+    rgba(232, 228, 220, 0.25) 40%,
+    rgba(20, 20, 22, 0.55) 100%
+  );
+}
+
+.dream-image {
+  filter: contrast(0.92) saturate(0.78) brightness(0.95);
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Editorial stickers */
+.sticker {
+  cursor: pointer;
+  border-radius: 1.25rem;
+  border-width: 1px;
+  border-style: solid;
+  padding: 1.125rem 1.375rem;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.15) inset;
+  backdrop-filter: blur(8px);
+  transition:
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.5s ease;
+}
+
+.sticker:hover {
+  scale: 1.06;
+  translate: 0 -4px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  z-index: 20;
+}
+
+.sticker-inner--float {
+  display: block;
+  animation: float 6s ease-in-out infinite;
+}
+
+.sticker:nth-of-type(odd) .sticker-inner--float {
+  animation-delay: -2s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+.glass-btn--dark {
+  border-color: rgba(44, 42, 38, 0.15);
+  background: rgba(255, 255, 255, 0.45);
+  color: #2c2a26;
+}
+
+.glass-btn--dark:hover {
+  background: rgba(44, 42, 38, 0.88);
+  color: #f7f4ef;
+  border-color: rgba(44, 42, 38, 0.3);
+}
+
+.editorial-side {
+  position: absolute;
+  top: 50%;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(44, 42, 38, 0.35);
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+}
+
+.editorial-side--left {
+  left: 1.25rem;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.editorial-side--right {
+  right: 1.25rem;
+  transform: translateY(-50%);
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-in {
+  animation: modal-in 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.portfolio-card {
+  min-height: min(90vh, 900px);
 }
