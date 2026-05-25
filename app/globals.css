@@ -2,26 +2,188 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
-  --foreground: #fafafa;
   --cream: #f7f4ef;
-  --sage: #4a5d4a;
-  --gold: #c4a574;
+  --sage: #5c6b58;
+  --paper: #f0ebe3;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
+html {
+  scroll-behavior: smooth;
 }
 
-/* Apple-style glass buttons */
+body {
+  margin: 0;
+  background: #141614;
+  color: #f5f0e8;
+  overflow-x: hidden;
+}
+
+/* Una sola página con scroll por secciones */
+.invitation-scroll {
+  height: 100dvh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.invite-panel {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.invite-vignette {
+  background: linear-gradient(
+    180deg,
+    rgba(20, 28, 24, 0.35) 0%,
+    rgba(30, 40, 34, 0.2) 50%,
+    rgba(10, 12, 10, 0.55) 100%
+  );
+}
+
+/* Tarjeta invitación — papel */
+.invite-card {
+  position: relative;
+  background: linear-gradient(165deg, #faf7f2 0%, #f0ebe3 48%, #e8e2d8 100%);
+  border-radius: 1.75rem;
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.6) inset,
+    0 24px 80px rgba(0, 0, 0, 0.28),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.scalloped-badge {
+  background: #faf7f2;
+  border-radius: 58% 42% 48% 52% / 48% 55% 45% 52%;
+  border: 1px solid rgba(139, 154, 130, 0.35);
+}
+
+/* Polaroid físico */
+.polaroid-inner {
+  background: #fafafa;
+  padding: 0.5rem 0.5rem 1.75rem;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.postage-stamp {
+  background: #faf7f2;
+  padding: 4px;
+  border: 2px dashed #b8b0a4;
+}
+
+.postage-stamp > div {
+  filter: sepia(0.15) contrast(0.95);
+}
+
+.ribbon-tag {
+  background: linear-gradient(135deg, #5c6b58, #4a5748);
+  padding: 0.65rem 1.25rem;
+  border-radius: 2px 14px 14px 2px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.oval-frame {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.lace-divider {
+  width: 100%;
+  height: 1.25rem;
+  color: #9a9088;
+}
+
+/* Interacción postal — apretable */
+.postal-tap {
+  cursor: pointer;
+  transition:
+    transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.35s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.postal-tap:hover {
+  transform: scale(1.05) translateY(-3px);
+  filter: brightness(1.03);
+  z-index: 40;
+}
+
+.postal-tap:active {
+  transform: scale(0.96) translateY(1px);
+  transition-duration: 0.12s;
+}
+
+/* Flotación sutil en piezas del hero */
+.invite-card .postal-tap {
+  animation: drift 7s ease-in-out infinite;
+}
+
+.invite-card .postal-tap:nth-child(3n) {
+  animation-delay: -2s;
+}
+.invite-card .postal-tap:nth-child(3n + 1) {
+  animation-delay: -4s;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+/* Revelar al scroll */
+.reveal-scroll {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition:
+    opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-cue {
+  animation: fade-cue 2.5s ease-in-out infinite;
+}
+
+@keyframes fade-cue {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.dream-image {
+  filter: contrast(0.9) saturate(0.72) brightness(0.96);
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Botones glass (reserva / lightbox) */
 .glass-btn {
   display: inline-flex;
   align-items: center;
@@ -33,22 +195,17 @@ body {
   font-size: 0.6875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: inherit;
+  color: #fafafa;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition:
     transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    background 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    border-color 0.45s ease,
-    box-shadow 0.45s ease,
+    background 0.45s ease,
     color 0.35s ease;
 }
 
 .glass-btn:hover {
-  border-color: rgba(255, 255, 255, 0.35);
   background: rgba(255, 255, 255, 0.92);
   color: #18181b;
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.12);
   transform: scale(1.02);
 }
 
@@ -56,137 +213,17 @@ body {
   transform: scale(0.98);
 }
 
-.glass-btn--sm {
-  padding: 0.5rem 1.125rem;
-  font-size: 0.625rem;
-}
-
-.glass-btn--ghost {
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-.glass-btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: #fafafa;
-  box-shadow: none;
-  transform: scale(1.01);
-}
-
-/* Dreamcore atmosphere */
-.dream-overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(42, 61, 50, 0.45) 0%,
-    rgba(232, 228, 220, 0.25) 40%,
-    rgba(20, 20, 22, 0.55) 100%
-  );
-}
-
-.dream-image {
-  filter: contrast(0.92) saturate(0.78) brightness(0.95);
-}
-
-.grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.035;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Editorial stickers */
-.sticker {
-  cursor: pointer;
-  border-radius: 1.25rem;
-  border-width: 1px;
-  border-style: solid;
-  padding: 1.125rem 1.375rem;
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.12),
-    0 1px 0 rgba(255, 255, 255, 0.15) inset;
-  backdrop-filter: blur(8px);
-  transition:
-    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    box-shadow 0.5s ease;
-}
-
-.sticker:hover {
-  scale: 1.06;
-  translate: 0 -4px;
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.2),
-    0 1px 0 rgba(255, 255, 255, 0.2) inset;
-  z-index: 20;
-}
-
-.sticker-inner--float {
-  display: block;
-  animation: float 6s ease-in-out infinite;
-}
-
-.sticker:nth-of-type(odd) .sticker-inner--float {
-  animation-delay: -2s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -6px;
-  }
-}
-
-.glass-btn--dark {
-  border-color: rgba(44, 42, 38, 0.15);
-  background: rgba(255, 255, 255, 0.45);
-  color: #2c2a26;
-}
-
-.glass-btn--dark:hover {
-  background: rgba(44, 42, 38, 0.88);
-  color: #f7f4ef;
-  border-color: rgba(44, 42, 38, 0.3);
-}
-
-.editorial-side {
-  position: absolute;
-  top: 50%;
-  font-size: 9px;
-  letter-spacing: 0.35em;
-  color: rgba(44, 42, 38, 0.35);
-  writing-mode: vertical-rl;
-  text-transform: uppercase;
-}
-
-.editorial-side--left {
-  left: 1.25rem;
-  transform: translateY(-50%) rotate(180deg);
-}
-
-.editorial-side--right {
-  right: 1.25rem;
-  transform: translateY(-50%);
-}
-
 @keyframes modal-in {
   from {
     opacity: 0;
-    transform: scale(0.96) translateY(12px);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1);
   }
 }
 
 .animate-modal-in {
-  animation: modal-in 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-.portfolio-card {
-  min-height: min(90vh, 900px);
+  animation: modal-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }

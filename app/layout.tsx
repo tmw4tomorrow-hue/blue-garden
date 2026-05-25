@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Blue Garden | Eventos al aire libre",
-  description:
-    "Experiencias ecológicas premium para eventos inolvidables al aire libre.",
+  title: "Blue Garden",
+  description: "Experiencias al aire libre — invitación interactiva.",
 };
 
 export default function RootLayout({
